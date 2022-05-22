@@ -5,6 +5,13 @@
 		"@typescript-eslint"
 	],
 	"rules": {
+    //pass function/method names you would like this rule to ignore
+    "@typescript-eslint/explicit-function-return-type": [ 
+      "error",
+      {
+        "allowedNames": ["MyDocument", "webpack"]
+      }
+    ],
 		"semi": "off",
 		"@typescript-eslint/semi": [
 			"warn"
@@ -15,7 +22,16 @@
 				"allowSingleExtends": true
 			}
 		]
+    // "indent": ["error", "tab"]
 	},
+  "overrides": [
+    {
+      // enable the rule specifically for TypeScript files
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/explicit-function-return-type": ["warn"]
+      }
+    }],
 	"extends": [
     "next/core-web-vitals",
 		"eslint:recommended",
