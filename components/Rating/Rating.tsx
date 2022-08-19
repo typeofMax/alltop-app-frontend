@@ -1,5 +1,5 @@
 //@Libs
-import { KeyboardEvent, useEffect, useState } from 'react';
+import { Fragment, KeyboardEvent, useEffect, useState } from 'react';
 import cn from 'classnames';
 //@Types
 import { IRatingProps } from './Rating.props';
@@ -31,7 +31,7 @@ export const Rating = ({
 					onMouseEnter={(): void => changeDisplay(i + 1)}
 					onMouseLeave={(): void => changeDisplay(rating)}
 					onClick={(): void => clickHandler(i + 1)}
-					className={cn(s.star, { [s.filled]: i < currentRatingValue })}
+					className={cn(s.star, { [s.filled]: i < currentRatingValue, [s.editable]: isEditable })}
 				>
 					<RatingIcon
 						tabIndex={isEditable ? 0 : -1}
@@ -72,9 +72,9 @@ export const Rating = ({
 	return (
 		<div {...props}>
 			{ratingArray.map((r: JSX.Element, i: number) => (
-				<span className={cn({ [s.editable]: isEditable })} key={i}>
+				<Fragment key={i}>
 					{r}
-				</span>
+				</Fragment>
 			))}
 		</div>
 	);
