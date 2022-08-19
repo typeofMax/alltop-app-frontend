@@ -1,0 +1,22 @@
+.container {
+	display: grid;
+	grid-template-columns: 1fr auto auto;
+	gap: 10px 40px;
+	align-items: center;
+	padding: 25px 30px;
+	font-size: 16px;
+	font-weight: 500;
+	line-height: 22px;
+	color: var(--white);
+	background-color: var(--primary);
+}
+
+@media screen and (max-width: 768px) {
+	.container {
+		grid-template-columns: 1fr;
+	}
+}
+
+.container a:hover {
+	color: var(--gray-light);
+}
