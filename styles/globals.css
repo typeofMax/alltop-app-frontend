@@ -1,10 +1,23 @@
+:root {
+	--font-family: 'Noto Sans', sans-serif;
+	--black: #3B434E;
+	--gray-light: #EBEBEB;
+	--white: #FFF;
+	--primary: #7653FC;
+	--primary-hover: #6344DF;
+	--red: #FC836D;
+	--green: #1DC37E;
+	--green-light: #C8F8E4;
+}
+
 html,
 body {
 	padding: 0;
 	margin: 0;
 	font-family: var(--font-family);
+	font-weight: 400;
 	color: var(--black);
-	background: #F5F6F8;
+	background-color: #F5F6F8;
 }
 
 * {
@@ -48,16 +61,4 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
 	appearance: none;
 	margin: 0;
-}
-
-:root {
-	--font-family: 'Noto Sans', sans-serif;
-	--black: #3B434E;
-	--gray-light: #EBEBEB;
-	--white: #FFF;
-	--primary: #7653FC;
-	--primary-hover: #6344DF;
-	--red: #FC836D;
-	--green: #1DC37E;
-	--green-light: #C8F8E4;
 }
