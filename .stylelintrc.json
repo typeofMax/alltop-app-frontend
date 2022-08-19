@@ -1,23 +1,23 @@
 {
-	"extends": [
-		"stylelint-config-standard",
-    "stylelint-config-recess-order"	
-	],
-	"plugins": [
-		"stylelint-order"
-	],
-	"rules": {
-		"string-quotes": "single",
-		"indentation": "tab",
-		"color-hex-case": "upper",
-		"selector-class-pattern": "^.*$",
-		"declaration-block-no-redundant-longhand-properties": [
-			true,
-			{
-				"ignoreShorthands": [
-					"/grid/"
-				]
-			}
-		]
-	}
+  "extends": [
+    "stylelint-config-standard",
+    "stylelint-config-recess-order"
+  ],
+  "plugins": [
+    "stylelint-order"
+  ],
+  "rules": {
+    "string-quotes": "single",
+    "indentation": "tab",
+    "color-hex-case": "upper",
+    "selector-class-pattern": "^.*$",
+    "declaration-block-no-redundant-longhand-properties": [
+      true,
+      {
+        "ignoreShorthands": [
+          "/grid/"
+        ]
+      }
+    ]
+  }
 }
