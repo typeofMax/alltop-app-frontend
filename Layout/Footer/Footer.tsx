@@ -2,11 +2,12 @@
 import cn from 'classnames';
 import {format} from 'date-fns';
 //@Types
+import { FC } from 'react';
 import { IFooterProps } from "./Footer.props";
 //@Styles
 import s from './Footer.module.css';
 
-export const Footer = ({className, ...props}:IFooterProps): JSX.Element => {
+export const Footer: FC<IFooterProps> = ({className, ...props}) => {
   
   return (
     <footer className={cn(className, s.container)} {...props}>

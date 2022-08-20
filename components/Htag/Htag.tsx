@@ -1,9 +1,10 @@
 //@Types
+import { FC } from 'react';
 import { IHtagProps } from './Htag.props';
 //@Styles
 import s from './Htag.module.css';
 
-export const Htag = ({ type, children }: IHtagProps): JSX.Element => {
+export const Htag: FC<IHtagProps> = ({ type, children }) => {
 	switch (type) {
 		case 'h1':
 			return <h1 className={s.h1}>{children}</h1>;

@@ -1,18 +1,19 @@
 //@Libs
 import cn from 'classnames';
 //@Types
+import { FC } from 'react';
 import { ITagProps } from './Tag.props';
 //@Styles
 import s from './Tag.module.css';
 
-export const Tag = ({
+export const Tag: FC<ITagProps> = ({
 	children,
 	href,
 	size = 'm',
 	colorType,
 	className,
 	...props
-}: ITagProps): JSX.Element => {
+}) => {
 	return (
 		<div
 			{...props}

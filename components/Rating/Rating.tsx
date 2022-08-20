@@ -1,5 +1,5 @@
 //@Libs
-import { Fragment, KeyboardEvent, useEffect, useState } from 'react';
+import { FC, Fragment, KeyboardEvent, useEffect, useState } from 'react';
 import cn from 'classnames';
 //@Types
 import { IRatingProps } from './Rating.props';
@@ -8,15 +8,8 @@ import s from './Rating.module.css';
 //@Image
 import RatingIcon from './Star.svg';
 
-export const Rating = ({
-	isEditable = false,
-	rating,
-	setRating,
-	...props
-}: IRatingProps): JSX.Element => {
-	const [ratingArray, setRatingArray] = useState<JSX.Element[]>(
-		new Array(5).fill(<></>)
-	);
+export const Rating: FC<IRatingProps> = ({ isEditable = false, rating, setRating, ...props }) => {
+	const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
 
 	useEffect(() => {
 		constructRating(rating);
@@ -35,7 +28,7 @@ export const Rating = ({
 				>
 					<RatingIcon
 						tabIndex={isEditable ? 0 : -1}
-						onKeyDown={(e: KeyboardEvent<SVGAElement>) =>
+						onKeyDown={(e: KeyboardEvent<SVGAElement>): boolean | void =>
 							isEditable && handleSpace(e, i + 1)
 						}
 					/>
@@ -66,15 +59,13 @@ export const Rating = ({
 			return;
 		}
 
-    setRating(val);
+		setRating(val);
 	};
 
 	return (
 		<div {...props}>
 			{ratingArray.map((r: JSX.Element, i: number) => (
-				<Fragment key={i}>
-					{r}
-				</Fragment>
+				<Fragment key={i}>{r}</Fragment>
 			))}
 		</div>
 	);
