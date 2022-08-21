@@ -6,14 +6,7 @@ import { ITagProps } from './Tag.props';
 //@Styles
 import s from './Tag.module.css';
 
-export const Tag: FC<ITagProps> = ({
-	children,
-	href,
-	size = 'm',
-	colorType,
-	className,
-	...props
-}) => {
+export const Tag: FC<ITagProps> = ({ children, href, size = 'm', colorType, className, ...props }) => {
 	return (
 		<div
 			{...props}
