@@ -28,9 +28,7 @@ export const Rating: FC<IRatingProps> = ({ isEditable = false, rating, setRating
 				>
 					<RatingIcon
 						tabIndex={isEditable ? 0 : -1}
-						onKeyDown={(e: KeyboardEvent<SVGAElement>): boolean | void =>
-							isEditable && handleSpace(e, i + 1)
-						}
+						onKeyDown={(e: KeyboardEvent<SVGAElement>): boolean | void => isEditable && handleSpace(e, i + 1)}
 					/>
 				</span>
 			);
