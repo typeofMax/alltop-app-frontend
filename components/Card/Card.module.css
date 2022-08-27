@@ -1,9 +1,9 @@
 .card {
 	background-color: var(--white);
 	border-radius: 5px;
-	box-shadow: 0 4px 4px rgba(0, 0, 0, 0.05);
+	box-shadow: 0 4px 4px rgb(0 0 0 / 5%);
 }
 
 .blue {
-	background-color: #f9f8ff;
+	background-color: #F9F8FF;
 }
