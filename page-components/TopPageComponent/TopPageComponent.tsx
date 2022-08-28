@@ -5,9 +5,9 @@ import { TopLevelCategory } from '../../core/interfaces/page.interface';
 import { SortEnum } from '../../components/Sort/Sort.props';
 //@Components
 import { Advantages, HhData, Htag, Sort, Tag } from '../../components';
+import { sortReducer } from '../../components/Sort/sort.reducer';
 //@Styles
 import s from './TopPageComponent.module.css';
-import { sortReducer } from '../../components/Sort/sort.reducer';
 
 export const TopPageComponent: FC<ITopPageComponentProps> = ({
 	page,
@@ -47,19 +47,19 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 			{firstCategory == TopLevelCategory.Courses && page.hh && (
 				<HhData {...page.hh} />
 			)}
-			{page.advantages && page.advantages.length > 0 && (
+			{page?.advantages && page?.advantages.length > 0 && (
 				<>
 					<Htag type='h2'>Преимущества</Htag>
 					<Advantages advantages={page.advantages} />
 				</>
 			)}
-			{page.seoText && (
+			{page?.seoText && (
 				<div
 					className={s.text}
 					dangerouslySetInnerHTML={{ __html: page.seoText }}
 				/>
 			)}
-			{page.tags && (
+			{page?.tags && (
 				<>
 					<Htag type='h2'>Получаемые навыки</Htag>
 					{page.tags.map((t) => (
