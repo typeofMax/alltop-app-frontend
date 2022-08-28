@@ -1,9 +1,10 @@
-.title {
+.titleWrapper {
 	display: grid;
 	grid-template-columns: auto 1fr auto;
 	gap: 20px;
-	align-items: baseline;
+	align-items: center;
 	justify-items: left;
+	margin-bottom: 21px;
 }
 
 .hhTitle {
@@ -41,4 +42,25 @@
 
 .text li:not(:last-child) {
 	margin-bottom: 15px;
+}
+
+@media screen and (max-width: 992px) {
+	.titleWrapper {
+		grid-template-areas:
+			'title tag'
+			'sort .';
+		grid-template-columns: auto 1fr;
+	}
+
+	.title {
+		grid-area: title;
+	}
+
+	.titleTag {
+		grid-area: tag;
+	}
+
+	.sort {
+		grid-area: sort;
+	}
 }

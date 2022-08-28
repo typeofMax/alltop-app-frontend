@@ -5,7 +5,7 @@ import { TopLevelCategory } from '../../core/interfaces/page.interface';
 import { SortEnum } from '../../components/Sort/Sort.props';
 //@Components
 import { Advantages, HhData, Htag, Product, Sort, Tag } from '../../components';
-import { sortReducer } from '../../components/Sort/sort.reducer';
+import { sortReducer } from './sort.reducer';
 //@Styles
 import s from './TopPageComponent.module.css';
 
@@ -29,14 +29,14 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 
 	return (
 		<div className={s.wrapper}>
-			<div className={s.title}>
-				{page && <Htag type='h1'>{page.title}</Htag>}
+			<div className={s.titleWrapper}>
+				{page && <Htag type='h1' className={s.title}>{page.title}</Htag>}
 				{products && (
-					<Tag colorType='grey' size='m'>
+					<Tag colorType='grey' size='m' className={s.titleTag}>
 						{products.length}
 					</Tag>
 				)}
-				<Sort sort={sort} setSort={setSort} />
+				<Sort sort={sort} setSort={setSort} className={s.sort}/>
 			</div>
 			<div>
 				{sortedProducts &&

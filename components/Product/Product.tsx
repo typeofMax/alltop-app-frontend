@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { declOfNum, priceRu } from '../../core/helpers/helpers';
 import { FC } from 'react';
 import { IProductProps } from './Product.props';
+import cn from 'classnames';
 //@Components
 import { Button, Card, Divider, Rating, Tag } from '..';
 //@Styles
@@ -48,10 +49,10 @@ export const Product: FC<IProductProps> = ({ product, ...props }) => {
 				{product.reviewCount}{' '}
 				{declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
 			</div>
-			<Divider className={s.hr} />
+			<Divider className={cn(s.hr, s.hr2)} />
 			<div className={s.description}>{product.description}</div>
 			<div className={s.features}>
-				{product.characteristics.map(c => (
+				{product.characteristics.map((c) => (
 					<div key={c.name} className={s.characteristics}>
 						<span className={s.characteristicsName}>{c.name}</span>
 						<span className={s.characteristicsDots}></span>
