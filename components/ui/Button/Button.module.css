@@ -24,6 +24,11 @@
 	border: 1px solid var(--gray-light);
 }
 
+.ghost:hover {
+	background-color: var(--primary);
+	color: var(--white);
+}
+
 .arrow {
 	display: inline-block;
 	margin-left: 10px;
