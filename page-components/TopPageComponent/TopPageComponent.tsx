@@ -1,17 +1,28 @@
 //@Types
-import { FC } from 'react';
+import { FC, useReducer } from 'react';
 import { ITopPageComponentProps } from './TopPageComponent.props';
 import { TopLevelCategory } from '../../core/interfaces/page.interface';
+import { SortEnum } from '../../components/Sort/Sort.props';
 //@Components
-import { HhData, Htag, Tag } from '../../components';
+import { Advantages, HhData, Htag, Sort, Tag } from '../../components';
 //@Styles
 import s from './TopPageComponent.module.css';
+import { sortReducer } from '../../components/Sort/sort.reducer';
 
 export const TopPageComponent: FC<ITopPageComponentProps> = ({
 	page,
 	products,
 	firstCategory,
 }) => {
+	const [{ products: sortedProduct, sort }, dispatch] = useReducer(
+		sortReducer,
+		{ sort: SortEnum.Rating, products }
+	);
+
+	const setSort = (sort: SortEnum): void => {
+		dispatch({ type: sort });
+	};
+
 	return (
 		<div className={s.wrapper}>
 			<div className={s.title}>
@@ -21,10 +32,11 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 						{products.length}
 					</Tag>
 				)}
-				<span>Сортировка</span>
+				<Sort sort={sort} setSort={setSort} />
 			</div>
 			<div>
-				{products && products.map((p) => <div key={p._id}>{p.title}</div>)}
+				{sortedProduct &&
+					sortedProduct.map((p) => <div key={p._id}>{p.title}</div>)}
 			</div>
 			<div className={s.hhTitle}>
 				{page && <Htag type='h2'>Вакансии - {page.category}</Htag>}
@@ -32,7 +44,31 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 					hh.ru
 				</Tag>
 			</div>
-      {firstCategory == TopLevelCategory.Courses && page.hh && <HhData {...page.hh}/>}
+			{firstCategory == TopLevelCategory.Courses && page.hh && (
+				<HhData {...page.hh} />
+			)}
+			{page.advantages && page.advantages.length > 0 && (
+				<>
+					<Htag type='h2'>Преимущества</Htag>
+					<Advantages advantages={page.advantages} />
+				</>
+			)}
+			{page.seoText && (
+				<div
+					className={s.text}
+					dangerouslySetInnerHTML={{ __html: page.seoText }}
+				/>
+			)}
+			{page.tags && (
+				<>
+					<Htag type='h2'>Получаемые навыки</Htag>
+					{page.tags.map((t) => (
+						<Tag key={t} colorType='primary'>
+							{t}
+						</Tag>
+					))}
+				</>
+			)}
 		</div>
 	);
 };
