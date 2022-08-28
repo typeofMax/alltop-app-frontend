@@ -1,5 +1,5 @@
 //@Types
-import { FC, useReducer } from 'react';
+import { FC, useEffect, useReducer } from 'react';
 import { ITopPageComponentProps } from './TopPageComponent.props';
 import { TopLevelCategory } from '../../core/interfaces/page.interface';
 import { SortEnum } from '../../components/Sort/Sort.props';
@@ -14,14 +14,18 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 	products,
 	firstCategory,
 }) => {
-	const [{ products: sortedProduct, sort }, dispatch] = useReducer(
+	const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(
 		sortReducer,
-		{ sort: SortEnum.Rating, products }
+		{ products, sort: SortEnum.Rating }
 	);
 
 	const setSort = (sort: SortEnum): void => {
-		dispatch({ type: sort });
+		dispatchSort({ type: sort });
 	};
+
+	useEffect(() => {
+		dispatchSort({ type: 'reset', initialState: products });
+	}, [products]);
 
 	return (
 		<div className={s.wrapper}>
@@ -35,8 +39,10 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 				<Sort sort={sort} setSort={setSort} />
 			</div>
 			<div>
-				{sortedProduct &&
-					sortedProduct.map((p) => <Product key={p._id} product={p}></Product>)}
+				{sortedProducts &&
+					sortedProducts.map((p) => (
+						<Product key={p._id} product={p}></Product>
+					))}
 			</div>
 			<div className={s.hhTitle}>
 				{page && <Htag type='h2'>Вакансии - {page.category}</Htag>}
