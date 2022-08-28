@@ -15,7 +15,7 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 	return (
 		<div className={s.wrapper}>
 			<div className={s.title}>
-				<Htag type='h1'>{page.title}</Htag>
+				{page && <Htag type='h1'>{page.title}</Htag>}
 				{products && (
 					<Tag colorType='grey' size='m'>
 						{products.length}
@@ -27,12 +27,12 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 				{products && products.map((p) => <div key={p._id}>{p.title}</div>)}
 			</div>
 			<div className={s.hhTitle}>
-				<Htag type='h2'>Вакансии - {page.category}</Htag>
+				{page && <Htag type='h2'>Вакансии - {page.category}</Htag>}
 				<Tag colorType='red' size='m'>
 					hh.ru
 				</Tag>
 			</div>
-      {firstCategory == TopLevelCategory.Courses && <HhData {...page.hh}/>}
+      {firstCategory == TopLevelCategory.Courses && page.hh && <HhData {...page.hh}/>}
 		</div>
 	);
 };
