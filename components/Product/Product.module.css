@@ -1,0 +1,143 @@
+.product {
+	display: grid;
+	grid-template-columns:
+		[start] 70px [logoend] 30px [titlestart] calc(50% - 100px)
+		[middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratestart] auto [end];
+	padding: 30px;
+	margin-bottom: 30px;
+}
+
+.logo {
+	grid-row: 1 / span 2;
+	grid-column: start / logoend;
+}
+
+.title,
+.tags {
+	grid-column: titlestart / middle;
+}
+
+.price,
+.priceTitle {
+	grid-column: pricestart / priceend;
+}
+
+.credit,
+.creditTitle {
+	grid-column: creditstart / creditend;
+}
+
+.rating,
+.rateTitle {
+	grid-column: ratestart / end;
+}
+
+.hr,
+.description,
+.actions {
+	grid-column: start / end;
+}
+
+.features {
+	grid-column: start / middle;
+}
+
+.advBlock {
+	grid-column: middle / end;
+	font-size: 16px;
+	line-height: 22px;
+}
+
+.logo img {
+	border-radius: 5px;
+}
+
+.title {
+	align-self: end;
+	font-size: 20px;
+	font-weight: 600;
+	line-height: 27px;
+}
+
+.price,
+.credit {
+	align-self: end;
+	font-size: 20px;
+	line-height: 27px;
+}
+
+.rating {
+	align-self: end;
+}
+
+.priceTitle,
+.creditTitle,
+.rateTitle {
+	font-size: 14px;
+	font-weight: 300;
+	line-height: 19px;
+}
+
+.month {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+.discount {
+	margin-left: 6px;
+	font-size: 12px;
+	font-weight: 700;
+	line-height: 1;
+}
+
+.category {
+	margin-top: 7px;
+}
+
+.description {
+	margin-bottom: 15px;
+	font-size: 16px;
+	line-height: 24px;
+}
+
+.reviewButton {
+	margin-left: 20px;
+}
+
+.advTitle {
+	margin-bottom: 10px;
+	font-weight: 700;
+}
+
+.advantages {
+	padding-left: 15px;
+	margin-bottom: 20px;
+	border-left: 3px solid var(--green);
+}
+
+.disadvantages {
+	padding-left: 15px;
+	border-left: 3px solid var(--red);
+}
+
+.characteristics {
+	display: grid;
+	grid-template-columns: auto 1fr auto;
+	gap: 10px;
+	padding-right: 15px;
+	font-size: 16px;
+	line-height: 2;
+}
+
+.characteristicsName {
+	font-weight: 700;
+}
+
+.characteristicsDots {
+	margin-bottom: 10px;
+	border-bottom: 1px dashed var(--gray-light);
+}
+
+.characteristicsValue {
+	text-align: right;
+}
