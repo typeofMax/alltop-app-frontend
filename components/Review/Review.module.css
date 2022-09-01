@@ -1,8 +1,8 @@
 .review {
 	display: grid;
 	grid-template-columns: [start] auto 1fr auto auto [end];
-	align-items: center;
 	gap: 10px;
+	align-items: center;
 	font-size: 14px;
 	line-height: 24px;
 }
@@ -34,7 +34,6 @@
 }
 
 @media screen and (max-width: 640px) {
-
 	.date {
 		grid-column: start / end;
 	}
