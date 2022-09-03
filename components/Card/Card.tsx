@@ -11,7 +11,6 @@ export const Card: FC<ICardProps> = ({ children, color = 'white', className, ...
 		<div
 			className={cn(s.card, className, {
 				[s.blue]: color == 'blue',
-				[s.white]: color == 'white',
 			})}
 			{...props}
 		>
