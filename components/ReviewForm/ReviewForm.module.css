@@ -1,4 +1,4 @@
-.reviewForm {
+.wrapper {
 	display: grid;
 	grid-template-columns: [start] auto 1fr auto [end];
 	gap: 20px 30px;
@@ -46,7 +46,7 @@
 }
 
 @media screen and (max-width: 1140px) {
-	.reviewForm {
+	.wrapper {
 		grid-template-columns: [start] 1fr 1fr [end];
 	}
 
@@ -59,8 +59,8 @@
 	}
 }
 
-@media screen and (max-width: 640) {
-	.reviewForm {
+@media screen and (max-width: 640px) {
+	.wrapper {
 		grid-template-columns: [start] 1fr [end];
 	}
 }
