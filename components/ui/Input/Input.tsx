@@ -13,9 +13,9 @@ export const Input = forwardRef(
 		ref: ForwardedRef<HTMLInputElement>
 	): JSX.Element => {
 		return (
-			<div className={s.inputWrapper}>
+			<div className={cn(s.inputWrapper, className)}>
 				<input
-					className={cn(s.item, className, { [s.error]: error })}
+					className={cn(s.item, { [s.error]: error })}
 					{...props}
 					ref={ref}
 				/>
