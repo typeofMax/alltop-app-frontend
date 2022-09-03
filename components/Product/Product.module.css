@@ -4,7 +4,7 @@
 		[start] 70px [logoend] 30px [titlestart] calc(50% - 100px)
 		[middle] 1fr [pricestart] auto [priceend] 40px [creditstart] auto [creditend] 40px [ratestart] auto [end];
 	padding: 30px;
-	margin-bottom: 30px;
+	margin-top: 30px;
 }
 
 .logo {
@@ -141,6 +141,20 @@
 
 .characteristicsValue {
 	text-align: right;
+}
+
+.reviews {
+}
+
+.closed {
+	max-height: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.opened {
+	max-height: auto;
+	padding: 30px;
 }
 
 @media screen and (max-width: 1340px) {
