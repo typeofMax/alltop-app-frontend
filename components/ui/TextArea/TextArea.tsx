@@ -8,9 +8,18 @@ import s from './TextArea.module.css';
 
 export const TextArea = forwardRef(
 	(
-		{ className, ...props }: ITextAreaProps,
+		{ className, error, ...props }: ITextAreaProps,
 		ref: ForwardedRef<HTMLTextAreaElement>
 	): JSX.Element => {
-		return <textarea className={cn(s.item, className)} {...props} ref={ref} />;
+		return (
+			<div className={cn(className, s.wrapper)}>
+				<textarea
+					className={cn(s.item, { [s.error]: error })}
+					{...props}
+					ref={ref}
+				/>
+				{error && <span className={s.errorMessage}>{error.message}</span>}
+			</div>
+		);
 	}
 );
