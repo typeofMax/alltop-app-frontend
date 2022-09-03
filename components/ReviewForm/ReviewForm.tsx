@@ -1,30 +1,49 @@
 //@Libs and Types
 import cn from 'classnames';
 import { useForm, Controller } from 'react-hook-form';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { IReviewFormProps } from './ReviewForm.props';
-import { IReviewForm } from './ReviewForm.interface';
+import { IReviewForm, IReviewSendResponse } from './ReviewForm.interface';
+import axios from 'axios';
 //@Components
 import { Button, Input, Rating, TextArea } from '..';
 //@Styles
 import s from './ReviewForm.module.css';
 //@Images
 import CloseIcon from './close.svg';
+import { API } from '../../core/api/api';
 
-export const ReviewForm: FC<IReviewFormProps> = ({
-	productId,
-	className,
-	...props
-}) => {
+export const ReviewForm: FC<IReviewFormProps> = ({ productId, className, ...props }) => {
 	const {
 		register,
 		control,
 		handleSubmit,
 		formState: { errors },
+		reset,
 	} = useForm<IReviewForm>();
 
-	const onSubmit = (data: IReviewForm): void => {
-		console.log(data);
+	const [isSuccess, setIsSuccess] = useState<boolean>(false);
+	const [error, setError] = useState<string>();
+
+	const onSubmit = async (formData: IReviewForm): Promise<void> => {
+		try {
+			const { data } = await axios.post<IReviewSendResponse>(API.review.createDemo, {
+				...formData,
+				productId,
+			});
+			if (data.message) {
+				setIsSuccess(true);
+				reset();
+			} else {
+				setError('Что то пошло не так...');
+			}
+		} catch (e) {
+			if (typeof e === 'string') {
+				setError(e); // works, `e` narrowed to string
+			} else if (e instanceof Error) {
+				setError(e.message); // works, `e` narrowed to Error
+			}
+		}
 	};
 
 	return (
@@ -73,16 +92,23 @@ export const ReviewForm: FC<IReviewFormProps> = ({
 				<div className={s.submit}>
 					<Button appearance='primary'>Отправить</Button>
 					<span className={s.info}>
-						* Перед публикацией отзыв пройдет предварительную модерацию и
-						проверку
+						* Перед публикацией отзыв пройдет предварительную модерацию и проверку
 					</span>
 				</div>
 			</div>
-			<div className={s.success}>
-				<div className={s.successTitle}>Отзыв отправлен</div>
-				<div>Спасибо, Ваш отзыв будет опубликован после проверки.</div>
-				<CloseIcon className={s.close} />
-			</div>
+			{isSuccess && (
+				<div className={s.success}>
+					<div className={s.successTitle}>Отзыв отправлен</div>
+					<div>Спасибо, Ваш отзыв будет опубликован после проверки.</div>
+					<CloseIcon className={s.close} onClick={(): void => setIsSuccess(false)} />
+				</div>
+			)}
+			{error && (
+				<div className={s.error}>
+					Что то пошло не так, попробуйте обновить страницу
+					<CloseIcon className={s.close} onClick={(): void => setError('')} />
+				</div>
+			)}
 		</form>
 	);
 };
