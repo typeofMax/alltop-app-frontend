@@ -1,7 +1,7 @@
 //@Libs and Types
 import Image from 'next/image';
 import { declOfNum, priceRu } from '../../core/helpers/helpers';
-import { FC, Fragment, useState } from 'react';
+import { FC, Fragment, useRef, useState } from 'react';
 import { IProductProps } from './Product.props';
 import cn from 'classnames';
 //@Components
@@ -9,11 +9,20 @@ import { Button, Card, Divider, Rating, Review, ReviewForm, Tag } from '..';
 //@Styles
 import s from './Product.module.css';
 
-export const Product: FC<IProductProps> = ({ product, ...props }) => {
+export const Product: FC<IProductProps> = ({ product, className, ...props }) => {
 	const [isReviewOpened, setIsReviewOpened] = useState<boolean>(false);
+	const reviewRef = useRef<HTMLDivElement>(null);
+
+	const scrollToReview = (): void => {
+		setIsReviewOpened(true);
+		reviewRef.current?.scrollIntoView({
+			behavior: 'smooth',
+			block: 'start',
+		});
+	};
 
 	return (
-		<>
+		<div className={className} {...props}>
 			<Card className={s.product}>
 				<div className={s.logo}>
 					<Image
@@ -48,9 +57,8 @@ export const Product: FC<IProductProps> = ({ product, ...props }) => {
 				</div>
 				<div className={s.priceTitle}>цена</div>
 				<div className={s.creditTitle}>кредит</div>
-				<div className={s.rateTitle}>
-					{product.reviewCount}{' '}
-					{declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
+				<div className={s.rateTitle} onClick={scrollToReview}>
+					<span>{product.reviewCount} {declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}</span>
 				</div>
 				<Divider className={cn(s.hr, s.hr2)} />
 				<div className={s.description}>{product.description}</div>
@@ -91,6 +99,7 @@ export const Product: FC<IProductProps> = ({ product, ...props }) => {
 				</div>
 			</Card>
 			<Card
+				ref={reviewRef}
 				color='blue'
 				className={cn(s.review, {
 					[s.opened]: isReviewOpened,
@@ -105,8 +114,8 @@ export const Product: FC<IProductProps> = ({ product, ...props }) => {
 						</Fragment>
 					);
 				})}
-				<ReviewForm productId={product._id}/>
+				<ReviewForm productId={product._id} />
 			</Card>
-		</>
+		</div>
 	);
 };

@@ -33,6 +33,11 @@
 	grid-column: ratestart / end;
 }
 
+.rateTitle > span {
+	color: var(--primary);
+	cursor: pointer;
+}
+
 .hr,
 .description,
 .actions {
