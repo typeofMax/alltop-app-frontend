@@ -45,6 +45,18 @@
 	cursor: pointer;
 }
 
+.error {
+	position: relative;
+	padding: 20px;
+	margin-top: 20px;
+	background-color: #FEA291;
+	border-radius: 5px;
+}
+
+.error .close path {
+	stroke: red;
+}
+
 @media screen and (max-width: 1140px) {
 	.wrapper {
 		grid-template-columns: [start] 1fr 1fr [end];
