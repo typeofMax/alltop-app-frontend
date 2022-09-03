@@ -4,6 +4,7 @@ import { withLayout } from '../../Layout/Layout';
 import axios from 'axios';
 import { firstLevelMenu } from '../../core/helpers/helpers';
 import { ParsedUrlQuery } from 'querystring';
+import {API} from '../../core/api/api';
 
 const Type: NextPage<ITypeProps> = ({firstCategory}) => {
 	return <>{firstCategory}</>;
@@ -33,7 +34,7 @@ export const getStaticProps: GetStaticProps<ITypeProps> = async ({ params }: Get
 		};
 	}
 
-	const { data: menu } = await axios.post<IMenuItem[]>(process.env.NEXT_PUBLIC_DOMAIN + 'api/top-page/find', {
+	const { data: menu } = await axios.post<IMenuItem[]>(API.topPage.find, {
 		firstCategory: firstCategoryItem.id,
 	});
 
