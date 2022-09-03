@@ -11,7 +11,9 @@ export const Advantages: FC<IAdvantagesProps> = ({ advantages }) => {
 		<>
 			{advantages.map(a => (
 				<div key={a._id} className={s.advantage}>
+					<div className={s.round}>
 					<CheckIcon />
+					</div>
 					<div className={s.title}>{a.title}</div>
 					<hr className={s.vline}/>
 					<div className={s.description}>{a.description}</div>
