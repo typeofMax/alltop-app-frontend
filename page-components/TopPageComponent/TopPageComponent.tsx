@@ -14,6 +14,7 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 	products,
 	firstCategory,
 }) => {
+
 	const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(
 		sortReducer,
 		{ products, sort: SortEnum.Rating }
