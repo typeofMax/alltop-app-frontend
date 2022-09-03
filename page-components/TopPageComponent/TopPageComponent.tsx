@@ -48,7 +48,7 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 						<Product key={p._id} product={p}></Product>
 					))}
 			</div>
-			{page.hh && (
+			{page?.hh && (
 				<div className={s.hhTitle}>
 					{page && <Htag type='h2'>Вакансии - {page.category}</Htag>}
 					<Tag colorType='red' size='m'>
