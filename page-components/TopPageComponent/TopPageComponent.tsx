@@ -14,7 +14,6 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 	products,
 	firstCategory,
 }) => {
-
 	const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(
 		sortReducer,
 		{ products, sort: SortEnum.Rating }
@@ -31,13 +30,17 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 	return (
 		<div className={s.wrapper}>
 			<div className={s.titleWrapper}>
-				{page && <Htag type='h1' className={s.title}>{page.title}</Htag>}
+				{page && (
+					<Htag type='h1' className={s.title}>
+						{page.title}
+					</Htag>
+				)}
 				{products && (
 					<Tag colorType='grey' size='m' className={s.titleTag}>
 						{products.length}
 					</Tag>
 				)}
-				<Sort sort={sort} setSort={setSort} className={s.sort}/>
+				<Sort sort={sort} setSort={setSort} className={s.sort} />
 			</div>
 			<div>
 				{sortedProducts &&
@@ -45,12 +48,14 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 						<Product key={p._id} product={p}></Product>
 					))}
 			</div>
-			<div className={s.hhTitle}>
-				{page && <Htag type='h2'>Вакансии - {page.category}</Htag>}
-				<Tag colorType='red' size='m'>
-					hh.ru
-				</Tag>
-			</div>
+			{page.hh && (
+				<div className={s.hhTitle}>
+					{page && <Htag type='h2'>Вакансии - {page.category}</Htag>}
+					<Tag colorType='red' size='m'>
+						hh.ru
+					</Tag>
+				</div>
+			)}
 			{firstCategory == TopLevelCategory.Courses && page.hh && (
 				<HhData {...page.hh} />
 			)}
