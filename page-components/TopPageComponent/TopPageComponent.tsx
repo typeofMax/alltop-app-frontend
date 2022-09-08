@@ -1,4 +1,4 @@
-//@Types
+//@Types and libs
 import { FC, useEffect, useReducer } from 'react';
 import { ITopPageComponentProps } from './TopPageComponent.props';
 import { TopLevelCategory } from '../../core/interfaces/page.interface';
