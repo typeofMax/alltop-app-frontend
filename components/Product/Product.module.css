@@ -149,18 +149,10 @@
 }
 
 .reviews {
-}
-
-.closed {
-	max-height: 0;
-	padding: 0;
 	overflow: hidden;
-}
-
-.opened {
-	max-height: auto;
 	padding: 30px;
 }
+
 
 @media screen and (max-width: 1340px) {
 	.product {
