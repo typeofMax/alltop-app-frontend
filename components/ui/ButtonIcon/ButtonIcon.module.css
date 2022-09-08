@@ -13,7 +13,8 @@
 .primary {
 	background-color: var(--primary);
 }
-.primary  svg *{
+
+.primary svg * {
 	fill: white;
 }
 
@@ -24,6 +25,7 @@
 .white {
 	background-color: white;
 }
+
 .white svg * {
 	fill: var(--primary);
 }
