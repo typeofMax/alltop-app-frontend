@@ -6,7 +6,7 @@ import { useScrollY } from '../../core/hooks/useScrollY';
 //@Styles
 import s from './Up.module.css';
 //@Images
-import UpIcon from './upArrow.svg';
+import { ButtonIcon } from '..';
 
 export const Up: FC<IUpProps> = () => {
 	const controls = useAnimation();
@@ -21,8 +21,8 @@ export const Up: FC<IUpProps> = () => {
 	};
 
 	return (
-		<motion.button className={s.wrapper} onClick={scrollToTop} animate={controls} initial={{opacity: 0}}>
-			<UpIcon />
-		</motion.button>
+		<motion.div className={s.wrapper}  animate={controls} initial={{opacity: 0}}>
+			<ButtonIcon appearance='primary' icon='upIcon' onClick={scrollToTop}/>
+		</motion.div>
 	);
 };
