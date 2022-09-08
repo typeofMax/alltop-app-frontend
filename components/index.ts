@@ -13,5 +13,6 @@ export * from './ReviewForm/ReviewForm';
 export * from './Up/Up';
 export * from './Divider/Divider';
 export * from './ui/Button/Button';
+export * from './ui/ButtonIcon/ButtonIcon';
 export * from './ui/Input/Input';
 export * from './ui/TextArea/TextArea';
