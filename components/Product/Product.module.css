@@ -149,10 +149,9 @@
 }
 
 .reviews {
-	overflow: hidden;
 	padding: 30px;
+	overflow: hidden;
 }
-
 
 @media screen and (max-width: 1340px) {
 	.product {
