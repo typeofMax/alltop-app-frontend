@@ -23,10 +23,10 @@
 	margin-bottom: 10px;
 	font-size: 12px;
 	font-weight: 300;
-	line-height: 16px;
 	color: var(--gray-dark);
 	text-transform: uppercase;
 	cursor: pointer;
+	outline-offset: -1px;
 }
 
 .secondBlock {
@@ -45,9 +45,9 @@
 	margin-bottom: 10px;
 	font-size: 14px;
 	font-weight: 500;
-	line-height: 19px;
 	color: var(--gray-dark);
 	cursor: pointer;
+	outline-offset: -1px;
 }
 
 .thirdLevel:hover,
