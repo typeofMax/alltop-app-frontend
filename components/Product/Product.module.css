@@ -33,7 +33,7 @@
 	grid-column: ratestart / end;
 }
 
-.rateTitle > span {
+.rateTitle > a {
 	color: var(--primary);
 	cursor: pointer;
 }
