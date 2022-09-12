@@ -120,7 +120,7 @@ export const Product = motion(
 						variants={variants}
 						initial='hidden'
 					>
-						<Card ref={reviewRef} color='blue' className={s.reviews} tabIndex={0}>
+						<Card ref={reviewRef} color='blue' className={s.reviews} tabIndex={isReviewOpened ? 0 : 1}>
 							{product.reviews.map((r) => {
 								return (
 									<Fragment key={r._id}>
@@ -129,7 +129,7 @@ export const Product = motion(
 									</Fragment>
 								);
 							})}
-							<ReviewForm productId={product._id} />
+							<ReviewForm productId={product._id} isOpened={isReviewOpened}/>
 						</Card>
 					</motion.div>
 				</div>

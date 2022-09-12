@@ -13,7 +13,7 @@ import s from './ReviewForm.module.css';
 import CloseIcon from './close.svg';
 import { API } from '../../core/api/api';
 
-export const ReviewForm: FC<IReviewFormProps> = ({ productId, className, ...props }) => {
+export const ReviewForm: FC<IReviewFormProps> = ({ productId, className, isOpened, ...props }) => {
 	const {
 		register,
 		control,
@@ -55,6 +55,7 @@ export const ReviewForm: FC<IReviewFormProps> = ({ productId, className, ...prop
 						required: { value: true, message: 'Заполните имя' },
 					})}
 					error={errors.name}
+					tabIndex={isOpened ? 0 : -1}
 				/>
 				<Input
 					placeholder='Заголовок отзыва'
@@ -63,6 +64,7 @@ export const ReviewForm: FC<IReviewFormProps> = ({ productId, className, ...prop
 						required: { value: true, message: 'Заполните заголовок' },
 					})}
 					error={errors.title}
+					tabIndex={isOpened ? 0 : -1}
 				/>
 				<div className={s.rating}>
 					<span>Оценка:</span>
@@ -77,6 +79,7 @@ export const ReviewForm: FC<IReviewFormProps> = ({ productId, className, ...prop
 								isEditable
 								ref={field.ref}
 								error={errors.rating}
+								tabIndex={isOpened ? 0 : -1}
 							/>
 						)}
 					/>
@@ -88,9 +91,12 @@ export const ReviewForm: FC<IReviewFormProps> = ({ productId, className, ...prop
 						required: { value: true, message: 'Заполните текст' },
 					})}
 					error={errors.description}
+					tabIndex={isOpened ? 0 : -1}
 				/>
 				<div className={s.submit}>
-					<Button appearance='primary'>Отправить</Button>
+					<Button appearance='primary' tabIndex={isOpened ? 0 : -1}>
+						Отправить
+					</Button>
 					<span className={s.info}>
 						* Перед публикацией отзыв пройдет предварительную модерацию и проверку
 					</span>

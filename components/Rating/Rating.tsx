@@ -18,7 +18,7 @@ import RatingIcon from './Star.svg';
 
 export const Rating = forwardRef(
 	(
-		{ isEditable = false, rating, setRating, error, ...props }: IRatingProps,
+		{ isEditable = false, rating, setRating, error, tabIndex, ...props }: IRatingProps,
 		ref: ForwardedRef<HTMLDivElement>
 	): JSX.Element => {
 		const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
@@ -26,8 +26,8 @@ export const Rating = forwardRef(
 
 		useEffect(() => {
 			constructRating(rating);
-			// eslint-disable-next-line react-hooks/exhaustive-deps
-		}, [rating]);
+			// eslint-disable-next-line
+		}, [rating, tabIndex]);
 
 		const computeFocus = (r: number, i: number): number => {
 			if (!isEditable) {
@@ -35,11 +35,11 @@ export const Rating = forwardRef(
 			}
 
 			if (!r && i === 0) {
-				return 0;
+				return tabIndex ?? 0;
 			}
 
 			if (r === i + 1) {
-				return 0;
+				return tabIndex ?? 0;
 			}
 
 			return -1;
