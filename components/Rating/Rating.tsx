@@ -59,7 +59,7 @@ export const Rating = forwardRef(
 						})}
 						tabIndex={computeFocus(rating, i)}
 						onKeyDown={(e: KeyboardEvent): void => handleKey(e)}
-						ref={(r) => ratingArrayRef.current?.push(r)}
+						ref={(r: HTMLSpanElement) => ratingArrayRef.current?.push(r)}
 					>
 						<RatingIcon />
 					</span>
@@ -96,11 +96,13 @@ export const Rating = forwardRef(
 					e.preventDefault();
 					setRating(rating < 5 ? rating + 1 : 5);
 				}
+				ratingArrayRef.current[rating]?.focus();
 			}
 
 			if (e.code == 'ArrowLeft' || e.code == 'ArrowDown') {
 				e.preventDefault();
 				setRating(rating > 1 ? rating - 1 : 1);
+				ratingArrayRef.current[rating - 2]?.focus();
 			}
 		};
 
