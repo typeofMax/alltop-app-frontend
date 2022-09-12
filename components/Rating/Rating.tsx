@@ -1,5 +1,5 @@
 /* eslint-disable react/display-name */
-//@Libs
+//@Libs and Types
 import {
 	ForwardedRef,
 	forwardRef,
@@ -7,9 +7,9 @@ import {
 	KeyboardEvent,
 	useEffect,
 	useState,
+	useRef,
 } from 'react';
 import cn from 'classnames';
-//@Types
 import { IRatingProps } from './Rating.props';
 //@Styles
 import s from './Rating.module.css';
@@ -21,14 +21,29 @@ export const Rating = forwardRef(
 		{ isEditable = false, rating, setRating, error, ...props }: IRatingProps,
 		ref: ForwardedRef<HTMLDivElement>
 	): JSX.Element => {
-		const [ratingArray, setRatingArray] = useState<JSX.Element[]>(
-			new Array(5).fill(<></>)
-		);
+		const [ratingArray, setRatingArray] = useState<JSX.Element[]>(new Array(5).fill(<></>));
+		const ratingArrayRef = useRef<HTMLSpanElement[]>([]);
 
 		useEffect(() => {
 			constructRating(rating);
 			// eslint-disable-next-line react-hooks/exhaustive-deps
 		}, [rating]);
+
+		const computeFocus = (r: number, i: number): number => {
+			if (!isEditable) {
+				return -1;
+			}
+
+			if (!r && i === 0) {
+				return 0;
+			}
+
+			if (r === i + 1) {
+				return 0;
+			}
+
+			return -1;
+		};
 
 		const constructRating = (currentRatingValue: number): void => {
 			const updatedRating = ratingArray.map((r: JSX.Element, i: number) => {
@@ -42,13 +57,11 @@ export const Rating = forwardRef(
 							[s.filled]: i < currentRatingValue,
 							[s.editable]: isEditable,
 						})}
+						tabIndex={computeFocus(rating, i)}
+						onKeyDown={(e: KeyboardEvent): void => handleKey(e)}
+						ref={(r) => ratingArrayRef.current?.push(r)}
 					>
-						<RatingIcon
-							tabIndex={isEditable ? 0 : -1}
-							onKeyDown={(e: KeyboardEvent<SVGAElement>): boolean | void =>
-								isEditable && handleSpace(e, i + 1)
-							}
-						/>
+						<RatingIcon />
 					</span>
 				);
 			});
@@ -71,12 +84,24 @@ export const Rating = forwardRef(
 			setRating(val);
 		};
 
-		const handleSpace = (e: KeyboardEvent<SVGAElement>, val: number): void => {
-			if (e.code !== 'Space' || !setRating) {
+		const handleKey = (e: KeyboardEvent): void => {
+			if (!isEditable || !setRating) {
 				return;
 			}
 
-			setRating(val);
+			if (e.code == 'ArrowRight' || e.code == 'ArrowUp') {
+				if (!rating) {
+					setRating(1);
+				} else {
+					e.preventDefault();
+					setRating(rating < 5 ? rating + 1 : 5);
+				}
+			}
+
+			if (e.code == 'ArrowLeft' || e.code == 'ArrowDown') {
+				e.preventDefault();
+				setRating(rating > 1 ? rating - 1 : 1);
+			}
 		};
 
 		return (
@@ -84,7 +109,7 @@ export const Rating = forwardRef(
 				{ratingArray.map((r: JSX.Element, i: number) => (
 					<Fragment key={i}>{r}</Fragment>
 				))}
-				{error && <span className={s.errorMessage}>{error.message}</span> }
+				{error && <span className={s.errorMessage}>{error.message}</span>}
 			</div>
 		);
 	}
