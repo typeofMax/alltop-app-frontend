@@ -31,6 +31,8 @@ export const Product = motion(
 					behavior: 'smooth',
 					block: 'start',
 				});
+
+				reviewRef.current?.focus();
 			};
 
 			return (
@@ -70,10 +72,10 @@ export const Product = motion(
 						<div className={s.priceTitle}>цена</div>
 						<div className={s.creditTitle}>кредит</div>
 						<div className={s.rateTitle} onClick={scrollToReview}>
-							<span>
+							<a tabIndex={0}>
 								{product.reviewCount}{' '}
 								{declOfNum(product.reviewCount, ['отзыв', 'отзыва', 'отзывов'])}
-							</span>
+							</a>
 						</div>
 						<Divider className={cn(s.hr, s.hr2)} />
 						<div className={s.description}>{product.description}</div>
@@ -118,7 +120,7 @@ export const Product = motion(
 						variants={variants}
 						initial='hidden'
 					>
-						<Card ref={reviewRef} color='blue' className={s.reviews}>
+						<Card ref={reviewRef} color='blue' className={s.reviews} tabIndex={0}>
 							{product.reviews.map((r) => {
 								return (
 									<Fragment key={r._id}>
