@@ -48,18 +48,28 @@ export const Product = motion(
 						</div>
 						<div className={s.title}>{product.title}</div>
 						<div className={s.price}>
-							{priceRu(product.price)}
+							<span>
+								<span className='visuallyHidden'>цена</span>
+								{priceRu(product.price)}
+							</span>
 							{product.oldPrice && (
 								<Tag colorType='green' className={s.discount}>
+									<span className='visuallyHidden'>скидка</span>
 									{priceRu(product.price - product.oldPrice)}
 								</Tag>
 							)}
 						</div>
 						<div className={s.credit}>
-							{priceRu(product.credit)}
+							<span>
+								<span className='visuallyHidden'>кредит</span>
+								{priceRu(product.credit)}
+							</span>
 							<span className={s.month}>/мес</span>{' '}
 						</div>
 						<div className={s.rating}>
+							<span className='visuallyHidden'>
+								{'рейтинг' + (product.reviewAvg ?? product.initialRating)}
+							</span>
 							<Rating rating={product.reviewAvg ?? product.initialRating} />
 						</div>
 						<div className={s.tags}>
@@ -69,8 +79,12 @@ export const Product = motion(
 								</Tag>
 							))}
 						</div>
-						<div className={s.priceTitle}>цена</div>
-						<div className={s.creditTitle}>кредит</div>
+						<div className={s.priceTitle} aria-hidden>
+							цена
+						</div>
+						<div className={s.creditTitle} aria-hidden>
+							кредит
+						</div>
 						<div className={s.rateTitle} onClick={scrollToReview}>
 							<a tabIndex={0}>
 								{product.reviewCount}{' '}
@@ -120,7 +134,12 @@ export const Product = motion(
 						variants={variants}
 						initial='hidden'
 					>
-						<Card ref={reviewRef} color='blue' className={s.reviews} tabIndex={isReviewOpened ? 0 : 1}>
+						<Card
+							ref={reviewRef}
+							color='blue'
+							className={s.reviews}
+							tabIndex={isReviewOpened ? 0 : 1}
+						>
 							{product.reviews.map((r) => {
 								return (
 									<Fragment key={r._id}>
@@ -129,7 +148,7 @@ export const Product = motion(
 									</Fragment>
 								);
 							})}
-							<ReviewForm productId={product._id} isOpened={isReviewOpened}/>
+							<ReviewForm productId={product._id} isOpened={isReviewOpened} />
 						</Card>
 					</motion.div>
 				</div>
