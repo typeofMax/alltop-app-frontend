@@ -33,7 +33,7 @@ export const Search: FC<ISearchProps> = ({ className, ...props }) => {
 	};
 
 	return (
-		<div className={cn(s.wrapper, className)} {...props}>
+		<form className={cn(s.wrapper, className)} {...props} role='search'>
 			<Input
 				placeholder='Поиск...'
 				className={s.input}
@@ -49,6 +49,6 @@ export const Search: FC<ISearchProps> = ({ className, ...props }) => {
 			>
 				<GlassIcon />
 			</Button>
-		</div>
+		</form>
 	);
 };
