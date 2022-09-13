@@ -10,11 +10,11 @@ import { useRouter } from 'next/router';
 
 export const Header: FC<IHeaderProps> = ({ className, ...props }) => {
 	const [isOpened, setIsOpened] = useState<boolean>(false);
-  const router = useRouter();
+	const router = useRouter();
 
-  useEffect(() => {
-    setIsOpened(false);
-  }, [router]);
+	useEffect(() => {
+		setIsOpened(false);
+	}, [router]);
 
 	const variants = {
 		opened: {
