@@ -15,9 +15,9 @@ export const Search: FC<ISearchProps> = ({ className, ...props }) => {
 	const router = useRouter();
 
 	const goToSearch = (): void => {
-    if (searchTerm == '') {
-      return;
-    }
+		if (searchTerm == '') {
+			return;
+		}
 		router.push({
 			pathname: '/search',
 			query: {
@@ -41,7 +41,12 @@ export const Search: FC<ISearchProps> = ({ className, ...props }) => {
 				onChange={(e): void => setSearchTerm(e.target.value)}
 				onKeyDown={handleKeyDown}
 			/>
-			<Button appearance='primary' className={s.button} onClick={goToSearch}>
+			<Button
+				appearance='primary'
+				className={s.button}
+				onClick={goToSearch}
+				aria-label='Искать по сайту'
+			>
 				<GlassIcon />
 			</Button>
 		</div>

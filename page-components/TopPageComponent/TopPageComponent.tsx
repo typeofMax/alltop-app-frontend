@@ -9,15 +9,11 @@ import { sortReducer } from './sort.reducer';
 //@Styles
 import s from './TopPageComponent.module.css';
 
-export const TopPageComponent: FC<ITopPageComponentProps> = ({
-	page,
-	products,
-	firstCategory,
-}) => {
-	const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(
-		sortReducer,
-		{ products, sort: SortEnum.Rating }
-	);
+export const TopPageComponent: FC<ITopPageComponentProps> = ({ page, products, firstCategory }) => {
+	const [{ products: sortedProducts, sort }, dispatchSort] = useReducer(sortReducer, {
+		products,
+		sort: SortEnum.Rating,
+	});
 
 	const setSort = (sort: SortEnum): void => {
 		dispatchSort({ type: sort });
@@ -36,7 +32,12 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 					</Htag>
 				)}
 				{products && (
-					<Tag colorType='grey' size='m' className={s.titleTag}>
+					<Tag
+						colorType='grey'
+						size='m'
+						className={s.titleTag}
+						aria-label={products.length + 'элементов'}
+					>
 						{products.length}
 					</Tag>
 				)}
@@ -44,9 +45,7 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 			</div>
 			<div>
 				{sortedProducts &&
-					sortedProducts.map((p) => (
-						<Product layout key={p._id} product={p}></Product>
-					))}
+					sortedProducts.map((p) => <Product layout key={p._id} product={p}></Product>)}
 			</div>
 			{page?.hh && (
 				<div className={s.hhTitle}>
@@ -56,9 +55,7 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 					</Tag>
 				</div>
 			)}
-			{firstCategory == TopLevelCategory.Courses && page.hh && (
-				<HhData {...page.hh} />
-			)}
+			{firstCategory == TopLevelCategory.Courses && page.hh && <HhData {...page.hh} />}
 			{page?.advantages && page?.advantages.length > 0 && (
 				<>
 					<Htag type='h2'>Преимущества</Htag>
@@ -66,10 +63,7 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({
 				</>
 			)}
 			{page?.seoText && (
-				<div
-					className={s.text}
-					dangerouslySetInnerHTML={{ __html: page.seoText }}
-				/>
+				<div className={s.text} dangerouslySetInnerHTML={{ __html: page.seoText }} />
 			)}
 			{page?.tags && (
 				<>
