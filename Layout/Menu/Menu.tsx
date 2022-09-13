@@ -133,5 +133,5 @@ export const Menu: FC = () => {
 		));
 	};
 
-	return <div className={s.wrapper}>{constructFirstLevel()}</div>;
+	return <nav className={s.wrapper}>{constructFirstLevel()}</nav>;
 };
