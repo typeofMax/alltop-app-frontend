@@ -25,3 +25,7 @@
 	line-height: 22px;
 	cursor: pointer;
 }
+
+.sortName {
+	display: none;
+}
