@@ -1,7 +1,7 @@
 //@Libs
 import cn from 'classnames';
 //@Types
-import { FC, KeyboardEvent } from 'react';
+import { FC } from 'react';
 import { ISortProps, SortEnum } from './Sort.props';
 //@Styles
 import s from './Sort.module.css';
