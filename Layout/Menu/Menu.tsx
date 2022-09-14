@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { FC, KeyboardEvent, useContext, useState } from 'react';
 import cn from 'classnames';
-import { m, motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
 //@Types
 import { IFirstLevelMenu, IPageItem } from '../../core/interfaces/menu.interface';
 //@Components
@@ -16,15 +16,18 @@ export const Menu: FC = () => {
 	const { menu, firstCategory, setMenu } = useContext(AppContext);
 	const [announce, setAnnounce] = useState<'closed' | 'opened' | undefined>();
 	const router = useRouter();
+	const shouldReduceMotion = useReducedMotion();
 
 	const variants = {
 		visible: {
-			transition: {
-				when: 'beforeChildren',
-				staggerChildren: 0.1,
-			},
+			transition: shouldReduceMotion
+				? {}
+				: {
+						when: 'beforeChildren',
+						staggerChildren: 0.1,
+				},
 		},
-		hidden: {},
+		hidden: { marginBottom: 0 },
 	};
 
 	const childVariants = {
@@ -33,7 +36,7 @@ export const Menu: FC = () => {
 			height: 'auto',
 		},
 		hidden: {
-			opacity: 0,
+			opacity: shouldReduceMotion ? 1 : 0,
 			height: 0,
 		},
 	};

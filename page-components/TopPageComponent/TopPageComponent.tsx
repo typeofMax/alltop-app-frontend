@@ -3,6 +3,7 @@ import { FC, useEffect, useReducer } from 'react';
 import { ITopPageComponentProps } from './TopPageComponent.props';
 import { TopLevelCategory } from '../../core/interfaces/page.interface';
 import { SortEnum } from '../../components/Sort/Sort.props';
+import { useReducedMotion } from 'framer-motion';
 //@Components
 import { Advantages, HhData, Htag, Product, Sort, Tag } from '../../components';
 import { sortReducer } from './sort.reducer';
@@ -14,6 +15,7 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({ page, products, f
 		products,
 		sort: SortEnum.Rating,
 	});
+	const shouldReduceMotion = useReducedMotion();
 
 	const setSort = (sort: SortEnum): void => {
 		dispatchSort({ type: sort });
@@ -45,7 +47,14 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({ page, products, f
 			</div>
 			<div role='list'>
 				{sortedProducts &&
-					sortedProducts.map((p) => <Product role='listitem' layout key={p._id} product={p}></Product>)}
+					sortedProducts.map((p) => (
+						<Product
+							role='listitem'
+							layout={shouldReduceMotion ? false : true}
+							key={p._id}
+							product={p}
+						></Product>
+					))}
 			</div>
 			{page?.hh && (
 				<div className={s.hhTitle}>
