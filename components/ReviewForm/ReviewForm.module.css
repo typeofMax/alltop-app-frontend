@@ -42,14 +42,15 @@
 	position: absolute;
 	top: 20px;
 	right: 20px;
-	cursor: pointer;
+	border: none;
+	background: none;
 }
 
 .error {
 	position: relative;
 	padding: 20px;
 	margin-top: 20px;
-	background-color: #FEA291;
+	background-color: #fea291;
 	border-radius: 5px;
 }
 
