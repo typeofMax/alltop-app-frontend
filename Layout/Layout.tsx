@@ -26,7 +26,7 @@ const Layout: FC<ILayoutProps> = ({ children }) => {
 	return (
 		<div className={s.wrapper}>
 			<a
-				tabIndex={1}
+				tabIndex={0}
 				className={cn(s.skipLink, { [s.displayed]: isSkipLinkDisplayed })}
 				onFocus={(): void => setIsSkipLinkDisplayed(true)}
 				onKeyDown={skipContentAction}
