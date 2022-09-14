@@ -21,8 +21,8 @@ export const Up: FC<IUpProps> = () => {
 	};
 
 	return (
-		<motion.div className={s.wrapper}  animate={controls} initial={{opacity: 0}}>
-			<ButtonIcon appearance='primary' icon='upIcon' onClick={scrollToTop}/>
+		<motion.div className={s.wrapper} animate={controls} initial={{ opacity: 0 }}>
+			<ButtonIcon appearance='primary' icon='upIcon' onClick={scrollToTop} aria-label='Наверх' />
 		</motion.div>
 	);
 };
