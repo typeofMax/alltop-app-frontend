@@ -10,8 +10,12 @@ import { firstLevelMenu } from '../../core/helpers/helpers';
 import { TopPageComponent } from '../../page-components';
 import { API } from '../../core/api/api';
 import Head from 'next/head';
+import { Error404 } from '../404';
 
 const TopPage: NextPage<ITopPageProps> = ({ products, firstCategory, page }) => {
+	if (!page || !products) {
+		return <Error404 />;
+	}
 	return (
 		<>
 			<Head>
