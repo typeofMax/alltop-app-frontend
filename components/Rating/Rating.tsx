@@ -59,7 +59,13 @@ export const Rating = forwardRef(
 						})}
 						tabIndex={computeFocus(rating, i)}
 						onKeyDown={(e: KeyboardEvent): void => handleKey(e)}
-						ref={(r: HTMLSpanElement) => ratingArrayRef.current?.push(r)}
+						ref={(r: HTMLSpanElement): number => ratingArrayRef.current?.push(r)}
+						role={isEditable ? 'slider' : ''}
+						aria-valuenow={rating}
+						aria-valuemax={5}
+						aria-valuemin={1}
+						aria-label={isEditable ? 'Укажите рейтинг' : 'рейтинг' + rating}
+						aria-invalid={error ? true : false}
 					>
 						<RatingIcon />
 					</span>
@@ -111,7 +117,11 @@ export const Rating = forwardRef(
 				{ratingArray.map((r: JSX.Element, i: number) => (
 					<Fragment key={i}>{r}</Fragment>
 				))}
-				{error && <span className={s.errorMessage}>{error.message}</span>}
+				{error && (
+					<span role='alert' className={s.errorMessage}>
+						{error.message}
+					</span>
+				)}
 			</div>
 		);
 	}

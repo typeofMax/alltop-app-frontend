@@ -13,12 +13,12 @@ export const TextArea = forwardRef(
 	): JSX.Element => {
 		return (
 			<div className={cn(className, s.wrapper)}>
-				<textarea
-					className={cn(s.item, { [s.error]: error })}
-					{...props}
-					ref={ref}
-				/>
-				{error && <span className={s.errorMessage}>{error.message}</span>}
+				<textarea className={cn(s.item, { [s.error]: error })} {...props} ref={ref} />
+				{error && (
+					<span role='alert' className={s.errorMessage}>
+						{error.message}
+					</span>
+				)}
 			</div>
 		);
 	}

@@ -20,6 +20,7 @@ export const ReviewForm: FC<IReviewFormProps> = ({ productId, className, isOpene
 		handleSubmit,
 		formState: { errors },
 		reset,
+		clearErrors,
 	} = useForm<IReviewForm>();
 
 	const [isSuccess, setIsSuccess] = useState<boolean>(false);
@@ -56,6 +57,7 @@ export const ReviewForm: FC<IReviewFormProps> = ({ productId, className, isOpene
 					})}
 					error={errors.name}
 					tabIndex={isOpened ? 0 : -1}
+					aria-invalid={errors.name ? true : false}
 				/>
 				<Input
 					placeholder='Заголовок отзыва'
@@ -65,6 +67,7 @@ export const ReviewForm: FC<IReviewFormProps> = ({ productId, className, isOpene
 					})}
 					error={errors.title}
 					tabIndex={isOpened ? 0 : -1}
+					aria-invalid={errors.title ? true : false}
 				/>
 				<div className={s.rating}>
 					<span>Оценка:</span>
@@ -92,9 +95,15 @@ export const ReviewForm: FC<IReviewFormProps> = ({ productId, className, isOpene
 					})}
 					error={errors.description}
 					tabIndex={isOpened ? 0 : -1}
+					aria-label='Текст отзыва'
+					aria-invalid={errors.description ? true : false}
 				/>
 				<div className={s.submit}>
-					<Button appearance='primary' tabIndex={isOpened ? 0 : -1}>
+					<Button
+						appearance='primary'
+						tabIndex={isOpened ? 0 : -1}
+						onClick={(): void => clearErrors()}
+					>
 						Отправить
 					</Button>
 					<span className={s.info}>
@@ -103,16 +112,28 @@ export const ReviewForm: FC<IReviewFormProps> = ({ productId, className, isOpene
 				</div>
 			</div>
 			{isSuccess && (
-				<div className={s.success}>
+				<div className={s.success} role='alert'>
 					<div className={s.successTitle}>Отзыв отправлен</div>
 					<div>Спасибо, Ваш отзыв будет опубликован после проверки.</div>
-					<CloseIcon className={s.close} onClick={(): void => setIsSuccess(false)} />
+					<button
+						onClick={(): void => setIsSuccess(false)}
+						className={s.close}
+						aria-label='Закрыть оповещение'
+					>
+						<CloseIcon />
+					</button>
 				</div>
 			)}
 			{error && (
-				<div className={s.error}>
+				<div className={s.error} role='alert'>
 					Что то пошло не так, попробуйте обновить страницу
-					<CloseIcon className={s.close} onClick={(): void => setError('')} />
+					<button
+						onClick={(): void => setError('')}
+						className={s.close}
+						aria-label='Закрыть оповещение'
+					>
+						<CloseIcon />
+					</button>
 				</div>
 			)}
 		</form>
