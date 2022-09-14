@@ -9,9 +9,21 @@ import { IProductModel } from '../../core/interfaces/product.interface';
 import { firstLevelMenu } from '../../core/helpers/helpers';
 import { TopPageComponent } from '../../page-components';
 import { API } from '../../core/api/api';
+import Head from 'next/head';
 
 const TopPage: NextPage<ITopPageProps> = ({ products, firstCategory, page }) => {
-	return <TopPageComponent products={products} page={page} firstCategory={firstCategory} />;
+	return (
+		<>
+			<Head>
+				<title>{page.metaTitle}</title>
+				<meta name='description' content={page.metaDescription} />
+				<meta property='og:title' content={page.metaTitle} />
+				<meta property='og:description' content={page.metaDescription} />
+				<meta property='og:type' content='article' />
+			</Head>
+			<TopPageComponent products={products} page={page} firstCategory={firstCategory} />
+		</>
+	);
 };
 
 export default withLayout(TopPage);
@@ -54,24 +66,18 @@ export const getStaticProps: GetStaticProps<ITopPageProps> = async ({
 	}
 
 	try {
-		const { data: menu } = await axios.post<IMenuItem[]>(
-			API.topPage.find,
-			{
-				firstCategory: firstCategoryItem.id,
-			}
-		);
+		const { data: menu } = await axios.post<IMenuItem[]>(API.topPage.find, {
+			firstCategory: firstCategoryItem.id,
+		});
 
 		const { data: page } = await axios.get<ITopPageModel>(
 			process.env.NEXT_PUBLIC_DOMAIN + 'api/top-page/byAlias/' + params.alias
 		);
 
-		const { data: products } = await axios.post<IProductModel[]>(
-			API.product.find,
-			{
-				category: page.category,
-				limit: 10,
-			}
-		);
+		const { data: products } = await axios.post<IProductModel[]>(API.product.find, {
+			category: page.category,
+			limit: 10,
+		});
 		return {
 			props: {
 				menu,
