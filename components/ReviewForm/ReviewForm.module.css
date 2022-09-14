@@ -42,15 +42,15 @@
 	position: absolute;
 	top: 20px;
 	right: 20px;
-	border: none;
 	background: none;
+	border: none;
 }
 
 .error {
 	position: relative;
 	padding: 20px;
 	margin-top: 20px;
-	background-color: #fea291;
+	background-color: #FEA291;
 	border-radius: 5px;
 }
 

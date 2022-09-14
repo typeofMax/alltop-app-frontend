@@ -10,8 +10,8 @@
 }
 
 .firsLevelList {
-	list-style: none;
 	padding: 0;
+	list-style: none;
 }
 
 .firstLevelActive,
@@ -25,30 +25,30 @@
 }
 
 .secondLevel {
+	padding: 0;
 	margin-bottom: 10px;
 	font-size: 12px;
 	font-weight: 300;
 	color: var(--gray-dark);
 	text-transform: uppercase;
 	cursor: pointer;
-	outline-offset: -1px;
-	border: none;
 	background: none;
-	padding: 0;
+	border: none;
+	outline-offset: -1px;
 }
 
 .secondBlock {
 	padding: 0 0 0 32px;
 	margin-top: 15px;
 	margin-left: 12px;
-	border-left: 1px solid #dfdfdf;
 	list-style: none;
+	border-left: 1px solid #DFDFDF;
 }
 
 .secondLevelBlock {
+	padding: 0;
 	overflow: hidden;
 	list-style: none;
-	padding: 0;
 }
 
 .thirdLevel {

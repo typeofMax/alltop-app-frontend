@@ -17,13 +17,13 @@
 }
 
 .type {
-	background-color: inherit;
-	border: none;
 	font-size: 16px;
 	font-weight: 700;
-	color: inherit;
 	line-height: 22px;
+	color: inherit;
 	cursor: pointer;
+	background-color: inherit;
+	border: none;
 }
 
 .sortName {
