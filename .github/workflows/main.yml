@@ -1,16 +1,14 @@
 name: Publish Docker
 
-on:
-  push:
-    branches: [ main ]
+on: [push]
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@master
+      - uses: actions/checkout@v3
       - name: Publish to Registry
-        uses: elgohr/Publish-Docker-Github-Action@master
+        uses: elgohr/Publish-Docker-Github-Action@v4
         with:
           registry: docker.pkg.github.com
           name: docker.pkg.github.com/typeofMax/alltop-app-frontend/alltop-app-frontend
