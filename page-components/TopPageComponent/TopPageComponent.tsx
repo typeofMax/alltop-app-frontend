@@ -43,9 +43,9 @@ export const TopPageComponent: FC<ITopPageComponentProps> = ({ page, products, f
 				)}
 				<Sort sort={sort} setSort={setSort} className={s.sort} />
 			</div>
-			<div>
+			<div role='list'>
 				{sortedProducts &&
-					sortedProducts.map((p) => <Product layout key={p._id} product={p}></Product>)}
+					sortedProducts.map((p) => <Product role='listitem' layout key={p._id} product={p}></Product>)}
 			</div>
 			{page?.hh && (
 				<div className={s.hhTitle}>
