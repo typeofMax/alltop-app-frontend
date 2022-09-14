@@ -36,7 +36,7 @@ export const Menu: FC = () => {
 			height: 'auto',
 		},
 		hidden: {
-			opacity: shouldReduceMotion ? 1 : 0,
+			opacity: 0,
 			height: 0,
 		},
 	};
