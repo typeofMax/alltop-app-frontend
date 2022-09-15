@@ -4,9 +4,9 @@ import { withLayout } from '../../Layout/Layout';
 import axios from 'axios';
 import { firstLevelMenu } from '../../core/helpers/helpers';
 import { ParsedUrlQuery } from 'querystring';
-import {API} from '../../core/api/api';
+import { API } from '../../core/api/api';
 
-const Type: NextPage<ITypeProps> = ({firstCategory}) => {
+const Type: NextPage<ITypeProps> = ({ firstCategory }) => {
 	return <>{firstCategory}</>;
 };
 
@@ -19,7 +19,9 @@ export const getStaticPaths: GetStaticPaths = async () => {
 	};
 };
 
-export const getStaticProps: GetStaticProps<ITypeProps> = async ({ params }: GetStaticPropsContext<ParsedUrlQuery>) => {
+export const getStaticProps: GetStaticProps<ITypeProps> = async ({
+	params,
+}: GetStaticPropsContext<ParsedUrlQuery>) => {
 	if (!params) {
 		return {
 			notFound: true,
