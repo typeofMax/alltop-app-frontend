@@ -25,7 +25,7 @@ export const Menu: FC = () => {
 				: {
 						when: 'beforeChildren',
 						staggerChildren: 0.1,
-				},
+			},
 		},
 		hidden: { marginBottom: 0 },
 	};
@@ -64,23 +64,31 @@ export const Menu: FC = () => {
 	const constructFirstLevel = (): JSX.Element => {
 		return (
 			<ul className={s.firsLevelList}>
-				{firstLevelMenu.map((firstLevelMenuItem) => (
-					<li key={firstLevelMenuItem.route} aria-expanded={firstLevelMenuItem.id == firstCategory}>
-						<Link href={`/${firstLevelMenuItem.route}`}>
-							<a>
-								<div
-									className={cn(s.firstLevel, {
-										[s.firstLevelActive]: firstLevelMenuItem.id == firstCategory,
-									})}
-								>
-									{firstLevelMenuItem.icon}
-									<span>{firstLevelMenuItem.name}</span>
-								</div>
-							</a>
-						</Link>
-						{firstLevelMenuItem.id == firstCategory && constructSecondLevel(firstLevelMenuItem)}
-					</li>
-				))}
+				{firstLevelMenu.map((firstLevelMenuItem, i) => {
+					if (i > 0) {
+						return null;
+					}
+					return (
+						<li
+							key={firstLevelMenuItem.route}
+							aria-expanded={firstLevelMenuItem.id == firstCategory}
+						>
+							<Link href={`/${firstLevelMenuItem.route}`}>
+								<a>
+									<div
+										className={cn(s.firstLevel, {
+											[s.firstLevelActive]: firstLevelMenuItem.id == firstCategory,
+										})}
+									>
+										{firstLevelMenuItem.icon}
+										<span>{firstLevelMenuItem.name}</span>
+									</div>
+								</a>
+							</Link>
+							{firstLevelMenuItem.id == firstCategory && constructSecondLevel(firstLevelMenuItem)}
+						</li>
+					);
+				})}
 			</ul>
 		);
 	};
